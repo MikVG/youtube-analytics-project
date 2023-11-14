@@ -27,9 +27,15 @@ class Channel:
 
     @classmethod
     def get_service(cls):
+        """
+        класс метод возвращающий объект для работы с YouTube API
+        """
         return cls.youtube
 
     def to_json(self, file_name):
+        """
+        метод сохраняющий в файл значения атрибутов экземпляра Channel
+        """
         channel_info = {
             "title": self.title,
             "description": self.description,
