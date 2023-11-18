@@ -20,6 +20,54 @@ class Channel:
         self.video_count = self.channel['items'][0]['statistics']['videoCount']
         self.viewCount = self.channel['items'][0]['statistics']['viewCount']
 
+    def __str__(self):
+        """
+        магический метод для отображения информации об объекте класса для пользователей
+        """
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other):
+        """
+        магический метод для сложений подписчиков разных экземпляров класса
+        """
+        return int(self.subscriberCount) + int(other.subscriberCount)
+
+    def __sub__(self, other):
+        """
+        магический метод для вычитания подписчиков разных экземпляров класса
+        """
+        return int(self.subscriberCount) - int(other.subscriberCount)
+
+    def __gt__(self, other):
+        """
+        магический метод сравнивающий, что подписчиков первого указанного экземпляра класса больше чем второго
+        """
+        return int(self.subscriberCount) > int(other.subscriberCount)
+
+    def __ge__(self, other):
+        """
+        магический метод сравнивающий, что подписчиков первого указанного экземпляра класса больше или равно чем второго
+        """
+        return int(self.subscriberCount) >= int(other.subscriberCount)
+
+    def __lt__(self, other):
+        """
+        магический метод сравнивающий, что подписчиков первого указанного экземпляра класса меньше чем второго
+        """
+        return int(self.subscriberCount) < int(other.subscriberCount)
+
+    def __le__(self, other):
+        """
+        магический метод сравнивающий, что подписчиков первого указанного экземпляра класса меньше или равно чем второго
+        """
+        return int(self.subscriberCount) <= int(other.subscriberCount)
+
+    def __eq__(self, other):
+        """
+        магический метод сравнивающий, что подписчиков первого указанного экземпляра класса равно второму
+        """
+        return int(self.subscriberCount) == int(other.subscriberCount)
+
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         channel = self.youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
